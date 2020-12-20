@@ -1,0 +1,38 @@
+.body {
+
+}
+.container {
+
+}
+.row-md-12 {
+    background-color: rgba(41, 41, 41, 0.961);
+    width: 100vw;
+    height: 60px;
+    color: white;
+    font-size: xx-large;
+    text-align: center;
+}
+#citySearch {
+    background-color: lightblue;
+    margin-top: 15px; 
+    padding: 10px; 
+}
+#search {
+    height: 40px;
+}
+/* .forecast {
+   margin-top: 10px; 
+} */
+#today, #future, #citySearch {
+    border: 1px solid black;
+}
+#today, #future {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+.card {
+    margin: 15px;
+}
+/* .thermometer {
+    transform: scale(5);
+} */

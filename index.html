@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    
+    <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="row-md-12">
+        Weather Dashboard
+    </div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4" id="citySearch">
+                <h5>Search for a City:</h5>
+                <form class="input-group mb-3" id="form-search">
+                    <input type="text" class="form-control input" placeholder="City, State, Country" aria-label="searchArea" aria-describedby="button-addon2" id="search">
+                    <button class="btn btn-primary searchBtn" type="button" id="search">
+                        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                          </svg></p>
+                    </button>
+                  </form>
+                <div class="searchResults">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row" id="today">
+                    <h1 class="cityName">Weather</h1>
+                    <h5 class="temp">Temperature:</h5>
+                    <h5 class="windSpeed">Wind Speed:</h5>
+                    <h5 class="uvIndex">UV Index:</h5>
+                </div>
+                <div class="row" id="future">
+                    <div class="forecast">
+                        <h4>5 day forecast: <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer-half" viewBox="0 0 16 18">
+                            <path fill-rule="evenodd" d="M6 2a2 2 0 1 1 4 0v7.627a3.5 3.5 0 1 1-4 0V2zm2-1a1 1 0 0 0-1 1v7.901a.5.5 0 0 1-.25.433A2.499 2.499 0 0 0 8 15a2.5 2.5 0 0 0 1.25-4.666.5.5 0 0 1-.25-.433V2a1 1 0 0 0-1-1z"/>
+                            <path d="M8.25 2a.25.25 0 0 0-.5 0v9.02a1.514 1.514 0 0 1 .5 0V2z"/>
+                            <path d="M9.5 12.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                          </svg></span></h4>
+                    </div>
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="date1">Date: </div>
+                        <div class="card-body">
+                          <h5 class="card-title symbol1"></h5>
+                          <p class="card-text currTemp1"></p>
+                          <p class="card-text currHum1"></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="date2">Date: </div>
+                        <div class="card-body">
+                          <h5 class="card-title symbol2"></h5>
+                          <p class="card-text currTemp2"></p>
+                          <p class="card-text currHum2"></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="date3">Date: </div>
+                        <div class="card-body">
+                          <h5 class="card-title symbol3"></h5>
+                          <p class="card-text currTemp3"></p>
+                          <p class="card-text currHum3"></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="date4">Date: </div>
+                        <div class="card-body">
+                          <h5 class="card-title symbol4"></h5>
+                          <p class="card-text currTemp4"></p>
+                          <p class="card-text currHum4"></p>
+                        </div>
+                    </div>
+                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                        <div class="card-header" id="date5">Date: </div>
+                        <div class="card-body">
+                          <h5 class="card-title symbol5"></h5>
+                          <p class="card-text currTemp5"></p>
+                          <p class="card-text currHum5"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
