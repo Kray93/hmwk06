@@ -96,7 +96,7 @@ function forecast() {
         $(".currHum5").append(hum5);
        
         // ajax inside ajax for symbol
-        var symbolUrl = "http://openweathermap.org/img/wn/" + response.list[1].weather[0].icon + ".png"
+        var symbolUrl = "https://openweathermap.org/img/wn/" + response.list[1].weather[0].icon + ".png"
 
         $.ajax({
             url: symbolUrl,
@@ -107,16 +107,16 @@ function forecast() {
             // add image tag with symbol from API to all 5 cards
             var newImg1 = $(`<img src="${symbolUrl}">`);
             $(".symbol1").append(newImg1);
-            symbolUrl = "http://openweathermap.org/img/wn/" + response.list[8].weather[0].icon + ".png"
+            symbolUrl = "https://openweathermap.org/img/wn/" + response.list[8].weather[0].icon + ".png"
             var newImg2 = $(`<img src="${symbolUrl}">`);
             $(".symbol2").append(newImg2);
-            symbolUrl = "http://openweathermap.org/img/wn/" + response.list[16].weather[0].icon + ".png"
+            symbolUrl = "https://openweathermap.org/img/wn/" + response.list[16].weather[0].icon + ".png"
             var newImg3 = $(`<img src="${symbolUrl}">`);
             $(".symbol3").append(newImg3);
-            symbolUrl = "http://openweathermap.org/img/wn/" + response.list[24].weather[0].icon + ".png"
+            symbolUrl = "https://openweathermap.org/img/wn/" + response.list[24].weather[0].icon + ".png"
             var newImg4 = $(`<img src="${symbolUrl}">`);
             $(".symbol4").append(newImg4);
-            symbolUrl = "http://openweathermap.org/img/wn/" + response.list[32].weather[0].icon + ".png"
+            symbolUrl = "https://openweathermap.org/img/wn/" + response.list[32].weather[0].icon + ".png"
             var newImg5 = $(`<img src="${symbolUrl}">`);
             $(".symbol5").append(newImg5);
         });  
