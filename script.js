@@ -1,9 +1,12 @@
 var cities = [];
 
-
+function mainFunction() {
+    currWeather();
+    forecast();
+};
 function currWeather() {
     var userInput = $("input").val();
-    console.log(userInput);
+    // console.log(userInput);
     var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" +userInput+ "&units=imperial&appid=2c062c555c4ce4c855a0024b2b9ccef3";
     
     $.ajax({
@@ -32,7 +35,6 @@ function currWeather() {
     });
 };
 
-
 function forecast() {
     var userInput = $("input").val();
     var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=imperial&appid=df49e2d92666e0dade8660d881bd4419";
@@ -50,7 +52,7 @@ function forecast() {
         $(".currTemp1").append(temp1);
 
         var hum1 = $(".currHum1").text("Humidity: " + response.list[0].main.humidity);
-        $(".currHum1").append(hum1)
+        $(".currHum1").append(hum1);
         
          // forecast day 2 of 5
         var date2 = $("#date2").text("Date: " + response.list[9].dt_txt);
@@ -60,7 +62,7 @@ function forecast() {
         $(".currTemp2").append(temp2);
 
         var hum2 = $(".currHum2").text("Humidity: " + response.list[9].main.humidity);
-        $(".currHum2").append(hum2)
+        $(".currHum2").append(hum2);
         
          // forecast day 3 of 5
         var date3 = $("#date3").text("Date: " + response.list[17].dt_txt);
@@ -70,7 +72,7 @@ function forecast() {
         $(".currTemp3").append(temp3);
 
         var hum3 = $(".currHum3").text("Humidity: " + response.list[17].main.humidity);
-        $(".currHum3").append(hum3)
+        $(".currHum3").append(hum3);
         
          // forecast day 4 of 5
         var date4 = $("#date4").text("Date: " + response.list[25].dt_txt);
@@ -80,7 +82,7 @@ function forecast() {
         $(".currTemp4").append(temp4);
 
         var hum4 = $(".currHum4").text("Humidity: " + response.list[25].main.humidity);
-        $(".currHum4").append(hum4)
+        $(".currHum4").append(hum4);
         
          // forecast day 5 of 5
         var date5 = $("#date5").text("Date: " + response.list[33].dt_txt);
@@ -90,26 +92,68 @@ function forecast() {
         $(".currTemp5").append(temp5);
 
         var hum5 = $(".currHum5").text("Humidity: " + response.list[33].main.humidity);
-        $(".currHum5").append(hum5)
+        $(".currHum5").append(hum5);
        
         // TODO: ajax inside ajax for symbol?
-        // var symbolUrl = "http://openweathermap.org/img/wn/10d@2x.png"
+        // var icon = 
+        var symbolUrl = "http://openweathermap.org/img/wn/" + response.list[1].weather[0].icon + ".png"
 
-        // $.ajax({
-        //     url: symbolUrl,
-        //     method: "GET"
-        // }).then(function(response1){
-        //     console.log(response1);
-        //     var symbol1 = $(".symbol1").text(response.list[0].weather[0].icon);
-        //     $(".symbol1").append(symbol1);
-        // });
-
-        
-    });
-    
-    
-    
+        $.ajax({
+            url: symbolUrl,
+            method: "GET"
+        }).then(function(response1){
+            console.log(response);
+            $(".symbol1").empty()
+            // var symbol1 = response.list[1].weather[0].icon;
+            var newImg1 = $(`<img src="${symbolUrl}">`);
+            $(".symbol1").append(newImg1);
+            symbolUrl = "http://openweathermap.org/img/wn/" + response.list[8].weather[0].icon + ".png"
+            var newImg2 = $(`<img src="${symbolUrl}">`);
+            $(".symbol2").append(newImg2);
+            symbolUrl = "http://openweathermap.org/img/wn/" + response.list[16].weather[0].icon + ".png"
+            var newImg3 = $(`<img src="${symbolUrl}">`);
+            $(".symbol3").append(newImg3);
+            symbolUrl = "http://openweathermap.org/img/wn/" + response.list[24].weather[0].icon + ".png"
+            var newImg4 = $(`<img src="${symbolUrl}">`);
+            $(".symbol4").append(newImg4);
+            symbolUrl = "http://openweathermap.org/img/wn/" + response.list[32].weather[0].icon + ".png"
+            var newImg5 = $(`<img src="${symbolUrl}">`);
+            $(".symbol5").append(newImg5);
+        });  
+    }); 
 };
+
+function pushCities() {
+    var userInput = $("input").val();
+    cities.push(userInput)
+    // console.log("test" + cities);
+    storeCities();
+    getCities();
+};
+
+function storeCities() {
+    localStorage.setItem('cities', JSON.stringify(cities));
+};
+
+function getCities() {
+    var storedCities = JSON.parse(localStorage.getItem("cities"));
+    if (storedCities !== null) {
+        cities = storedCities;
+    }
+    createBtn();
+};
+
+function createBtn(event) {
+    $(".searchResults").empty();
+    for (var i = 0; i < cities.length; i++) {
+        var city = cities[i];
+        var newBtn = $("<button>").text(city);
+        $("button").addClass("newSearch");
+        $(".searchResults").append(newBtn);
+    };
+};
+
+getCities();
 
 $(".searchBtn").on("click", function (event) {
     // console.log("consider me searched");
@@ -117,11 +161,21 @@ $(".searchBtn").on("click", function (event) {
     event.preventDefault();
     forecast();
     currWeather();
+    pushCities();
+    $("input").val("");
 });
 
-
-
-
+$("form").on("submit", function (event) {
+    // console.log("consider me searched");
+    // console.log($(this).prev().val());
+    event.preventDefault();
+    forecast();
+    currWeather();
+    pushCities();
+    $("input").val("");
+});
 
 // TODO: onclick for new city search result buttons
-// $(document).on("click", ".newSearch", mainFunction() )
+// $(document).on("click", ".newSearch", function() {
+//     mainFunction();
+// });
